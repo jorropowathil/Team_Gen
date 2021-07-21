@@ -1,6 +1,16 @@
 //require Employee
-const Employee = '../'
+const Employee = require('../lib/Employee');
+const Employee = require('../lib/Employee');
+
 // create test for employee 
+describe("Employee", () => {
+    test('Should create an object that has name, id and email  "name, id, email"', () => {
+        const Employee = new Employee;
+        expect("name" in employee.toEqual(true));
+        expect("id" in employee.toEqual(true));
+        expect("email" in employee.toEqual(true));
+    })
+})
 
 // test to see if type of new employee is an object
 
