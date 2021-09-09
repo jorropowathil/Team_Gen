@@ -14,6 +14,14 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 //require render function from the page template
 const render = require("./src/page-template.js");
 
+// Setting constants to empty arrays 
+const teamArray = [];
+const idArray = [];
+
+function startApp(){
+  
+}
+
 //use inquirer to determine what kind of employee you will be adding or to exit and build html
 //based on the reponse trigger another inquire block
 // use answers to create a "new Employee" and add the employee to the 
