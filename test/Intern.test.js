@@ -1,9 +1,20 @@
 //Require Intern  
+const Intern = require('../lib/Intern');
 
-//create test on Intern class
 
-//test to see if you can set school using our constructor
-
-//test to see if getRole() returns "Intern"
-
-//test to see if getSchool() returns school testvalue
+describe('Intern', () => {
+    describe('school', () => {
+        it(' should return string containing school information', () => {
+            const school = 'School Name';
+            const newSchool = new Intern('name', '1', 'email', school);
+            expect(newSchool.getSchool()).toEqual(school);
+        });
+    });
+    describe('Role',  () => {
+        it('the role of the intern should be returned', () => {
+            const role = 'Intern';
+            const newIntern = new Intern();
+            expect(newIntern.role).toEqual(role);
+        });
+    });
+});
