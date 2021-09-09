@@ -1,9 +1,20 @@
 //require Manager 
+const Manager = require('../lib/Manager');
 
-//create test on manager class
+describe('Manager', () => {
 
-//test to see if you can set officeNumber using our constructor
-
-//test to see if getRole() returns "Manager"
-
-//test to see if getOfficeNumber() returns officeNumber test value
+    describe('officeNumber', () => {
+        it('the officeNumber assigned to the manager should be returned', () => {
+            const officeNumber = '101';
+            const newManager = new Manager('name', '1', 'email', offNum);
+            expect(newManager.getOfficeNumber()).toEqual(officeNumber);
+        });
+    });
+    describe('getRole', () => {
+        it('the role of the manager should be returned', () => {
+            const role = 'Manager';
+            const managerResult = new Manager();
+            expect(managerResult.role).toEqual(role);
+        });
+    });
+});
