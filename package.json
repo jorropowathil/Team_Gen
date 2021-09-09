@@ -8,7 +8,9 @@
     "test": "test"
   },
   "dependencies": {
-    "inquirer": "^8.1.2"
+    "file-system": "^2.2.2",
+    "inquirer": "^8.1.2",
+    "jest": "^27.1.1"
   },
   "devDependencies": {},
   "scripts": {
