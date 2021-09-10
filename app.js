@@ -21,22 +21,133 @@ const teamArray = [];
 const idArray = [];
 
 function startApp(){
-  
+  function addManager(){
+    inquirer.prompt([
+      {
+        type: "input",
+        name: "managerName",
+        message: "Name of the team manager?",
+      },
+      {
+        type: "input",
+        name: "managerId",
+        message: "What is the manager's ID number?",
+      }, 
+      {
+        type: "input",
+        name: "managerEmail",
+        message: "What is the Team Manager's email?",
+      }, 
+      {
+        type: "input",
+        name: "managerOfficeNumber",
+        message: "Enter the Team Manager's office number",
+      },
+    ])
+    .then(inputs => {
+      // set a manager constant and create a new manager passing in user inputs
+      const manager = new Manager(inputs.managerName, inputs.managerId, inputs.managerEmail, inputs.managerOfficeNumber);
+      // push this new manager into team array
+      teamArray.push(manager);
+      // Push into the ID array
+      idArray.push(inputs.managerId);
+      newTeam();
+    });
+  }
+
+
+    function newTeam(){
+      inquirer.prompt([
+        {
+          type: "list",
+          name: "memberTypeChoice",
+          message: "What type of member do you want to add?",
+          choices: [
+            "Engineer",
+            "Intern"
+          ]
+        }
+      ]).then(teamMemberChoice => {
+        // Writing a switch case depending on which option they select
+        switch (teamMemberChoice.memberTypeChoice) {
+          case "Engineer":
+            addEngineer();
+            break;
+          case "Intern":
+            addIntern();
+            break;
+          default:
+            createTeam();
+        }
+      }) 
+    }
+  }
+  function addEngineer() {
+    inquirer.prompt([
+      {
+        type: "input",
+        name: "engineerName",
+        message: "Enter Engineer Name",
+      },
+      {
+        type: "input",
+        name: "engineerId",
+        message: "Enter engineer ID",
+      },
+      {
+        type: "input",
+        name: "engineerEmail",
+        message: "Enter Engineer Email",
+      },
+      {
+        type: "input",
+        name: "engineerGithub",
+        message: "Enter the engineer's github username",
+      }
+    ]).then(inputs => {
+      const engineer = new Engineer(inputs.engineerName, inputs.engineerId, inputs.engineerEmail, inputs.engineerGithub);
+      teamArray.push(engineer);
+      idArray.push(inputs.engineerId);
+      newTeam();
+    });
+  }
+  function addIntern() {
+    inquirer.prompt([
+      {
+        type: "input",
+        name: "internName",
+        message: "Enter intern's name",
+      },
+      {
+        type: "input",
+        name: "internId",
+        message: "Enter intern's id",
+      },
+      {
+        type: "input",
+        name: "internEmail",
+        message: "Enter intern's email",
+      },
+      {
+        type: "input",
+        name: "internSchool",
+        message: "Enter intern's school",
+      }
+    ]).then(inputs => {
+      const intern = new Intern(inputs.internName, inputs.internId, inputs.internEmail, inputs.internSchool);
+      teamArray.push(intern);
+      idArray.push(inputs.internId);
+      newTeam();
+    });
+  }
+  function createTeam() {
+    // Create the output directory if the output path doesn't exist
+    // Wasnt sure about this part but found it and it works
+    if (!fs.existsSync(OUTPUT_DIR)) {
+      fs.mkdirSync(OUTPUT_DIR)
+    }
+    fs.writeFileSync(outputPath, render(teamArray), "utf-8");
+  }
+  addManager();
 }
-
-//use inquirer to determine what kind of employee you will be adding or to exit and build html
-//based on the reponse trigger another inquire block
-// use answers to create a "new Employee" and add the employee to the 
-//teamMembers array
-//
-
-  // function buildTeam() {
-  //   // Create the output directory if the output path doesn't exist
-  //   if (!fs.existsSync(OUTPUT_DIR)) {
-  //     fs.mkdirSync(OUTPUT_DIR)
-  //   }
-  //   //write html to output/team.html using function exported from page-template.js
-  //   fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
-  // }
-
-      
+startApp();

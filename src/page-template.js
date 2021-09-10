@@ -53,30 +53,30 @@ const createTeam = team =>{
 </div>
         `;
     }
+    //create function that organizes information for the team and returns html for each type of team member inside a html template
+    // Create an empty array to recieve all the create functions
+    const newTeam= [];
 
+
+    newTeam.push(team.filter(employee => employee.getRole() === "Manager")
+        // map function so we can render data   
+        .map(manager => createManager(manager))
+    );
+    newTeam.push(team.filter(employee => employee.getRole() === "Engineer")
+        // map function so we can render data
+        .map(engineer => createEngineer(engineer))
+        // empty string cause they are joined together w/ out commas
+        .join("")
+    );
+    newTeam.push(team
+        .filter(employee => employee.getRole() === "Intern")
+        // map function so we can render data
+        .map(intern => createIntern(intern))
+        // empty string cause they are joined together w/ out commas
+        .join("")
+    );
 }
-//create function that organizes information for the team and returns html for each type of team member inside a html template
-// Create an empty array to recieve all the create functions
-const newTeam= [];
 
-
-newTeam.push(team.filter(employee => employee.getRole() === "Manager")
-    // map function so we can render data   
-    .map(manager => createManager(manager))
-);
-newTeam.push(team.filter(employee => employee.getRole() === "Engineer")
-    // map function so we can render data
-    .map(engineer => createEngineer(engineer))
-    // empty string cause they are joined together w/ out commas
-    .join("")
-);
-html.push(team
-    .filter(employee => employee.getRole() === "Intern")
-    // map function so we can render data
-    .map(intern => createIntern(intern))
-    // empty string cause they are joined together w/ out commas
-    .join("")
-);
 
 module.exports = team => {
     `
@@ -105,7 +105,7 @@ module.exports = team => {
     <div class="container">
         <div class="row">
             <div>
-                ${generateTeam(team)}
+                ${createTeam(team)}
             </div>
         </div>
     </div>
