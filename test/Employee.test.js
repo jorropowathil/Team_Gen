@@ -5,10 +5,10 @@ const Employee = require('../lib/Employee');
 // create test for employee 
 describe("Employee", () => {
     test('Should create an object that has name, id and email  "name, id, email"', () => {
-        const Employee = new Employee();
-        expect("name" in Employee.toEqual(true));
-        expect("id" in Employee.toEqual(true));
-        expect("email" in Employee.toEqual(true));
+        const employee = new Employee();
+        expect("name" in employee.toEqual(true));
+        expect("id" in employee.toEqual(true));
+        expect("email" in employee.toEqual(true));
     })
     // test to see if type of new employee is an object
     test("Employee should be converted into an object", () => {
