@@ -1,7 +1,9 @@
-///require classes and inquirer and fs
+///require classes 
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+
+// require inquirer, path and fs
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");

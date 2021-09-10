@@ -1,1 +1,16 @@
 /* do some CSS stuff in here */
+
+h1{
+    width: 100px;
+    height: 100px;
+    position: relative;
+    animation-name: slideIn;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slideIn {
+    from {left: 0px;}
+    to {left: 200px;}
+  }
+  
