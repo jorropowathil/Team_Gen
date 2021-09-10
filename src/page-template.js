@@ -29,7 +29,7 @@ const createTeam = team =>{
         <ul>
             <li >ID: ${engineer.getId()}</li>
             <li >Email: ${engineer.getEmail()}</li>
-            <li >GitHub: <a href="https://github.com/${engineer.getGithub()}">${engineer.getGithub()}</a></li>
+            <li >GitHub: <a href="https://github.com/${engineer.getGithubUser()}">${engineer.getGithubUser()}</a></li>
         </ul>
     </div>
 </div>

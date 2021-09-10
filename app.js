@@ -21,6 +21,7 @@ const teamArray = [];
 const idArray = [];
 
 function startApp(){
+  // Add a new Manager function
   function addManager(){
     inquirer.prompt([
       {
@@ -54,7 +55,7 @@ function startApp(){
       newTeam();
     });
   }
-
+// WE ARE GOOD UP UNTIL HERE 
 
     function newTeam(){
       inquirer.prompt([
@@ -64,7 +65,8 @@ function startApp(){
           message: "What type of member do you want to add?",
           choices: [
             "Engineer",
-            "Intern"
+            "Intern",
+            "I'm Done now"
           ]
         }
       ]).then(teamMemberChoice => {
@@ -76,12 +78,12 @@ function startApp(){
           case "Intern":
             addIntern();
             break;
-          default:
+          case "I'm Done now":
             createTeam();
         }
-      }) 
+      });
     }
-  }
+
   function addEngineer() {
     inquirer.prompt([
       {
@@ -111,6 +113,8 @@ function startApp(){
       newTeam();
     });
   }
+  addManager();
+  // Add intern function
   function addIntern() {
     inquirer.prompt([
       {
@@ -140,14 +144,11 @@ function startApp(){
       newTeam();
     });
   }
+  // Create a new team
   function createTeam() {
     // Create the output directory if the output path doesn't exist
     // Wasnt sure about this part but found it and it works
-    if (!fs.existsSync(OUTPUT_DIR)) {
-      fs.mkdirSync(OUTPUT_DIR)
-    }
     fs.writeFileSync(outputPath, render(teamArray), "utf-8");
   }
-  addManager();
 }
 startApp();
